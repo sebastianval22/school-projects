@@ -1,0 +1,18 @@
+{
+    "host": "localhost",
+    "port": 3247,
+    "path_background": "cliente/Sprites/background/background_inicio.png",
+    "path_background_juego": "cliente/Sprites/background/background_juego.png",
+    "path_user_logo": "cliente/Sprites/extra/user_profile.png",
+    "ponderador_encriptacion": 1,
+    "sprites_dados": ["cliente/Sprites/dices/dice_1.png",
+    "cliente/Sprites/dices/dice_2.png",
+    "cliente/Sprites/dices/dice_3.png",
+    "cliente/Sprites/dices/dice_4.png",
+    "cliente/Sprites/dices/dice_5.png",
+    "cliente/Sprites/dices/dice_6.png"],
+    "sprite_dado_1": "cliente/Sprites/dices/dice_background.png",
+    "sprite_dado_2": "cliente/Sprites/dices/dice_logo.png",
+    "PONDERADOR_ENCRIPTACION": 1,
+    "TIEMPO_ESPERA": 35
+}

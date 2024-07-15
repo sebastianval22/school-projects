@@ -1,0 +1,19 @@
+{   
+    "host": "localhost",
+    "port": 3247,
+   "nombres": ["Lionel",
+   "Andres",
+   "Messi", "Cuccitini"],
+   "nombre_espera": ["Por asignar 1",
+   "Por asignar 2", "Por asignar 3",
+   "Por asignar 4"],
+   "PONDERADOR_ENCRIPTACION": 1,
+   "NUMERO_JUGADORES": 4,
+   "NUMERO_VIDAS": 3,
+   "PROB_DUDAR": 0.3,
+   "PROB_ANUNCIAR": 0.4,
+   "VALOR_PASO": 4,
+   "TIEMPO_DUDA": 10,
+   "TIEMPO_BOT": 3,
+   "TIEMPO_FINAL": 30
+}

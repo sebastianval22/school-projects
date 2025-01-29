@@ -1,44 +1,90 @@
-# proyectos-escolares
-Este es un repositorio que contiene muchos de los proyectos de código en los que he trabajado para cursos universitarios. Este README también enlaza a repositorios externos para proyectos escolares en los que he trabajado.
+# Projects
+This is a repository containing many of the coding projects I have worked on for university courses. This README also links to external repositories for school projects I have contributed to.
 
-# Índice
-Los cursos están listados en orden cronológico, con los proyectos más recientes más cerca de la parte superior.
-Puedes encontrar más información en el README individual de cada proyecto.
+# Index
+The courses are listed in chronological order, with the most recent projects closer to the top. You can find more information in the individual README of each project.
 
-## Ingeniería de Software
-Este es un proyecto en el que toda la clase trabajó durante la duración del curso. Es una plataforma web diseñada para facilitar la organización y participación en partidos de fútbol (pickup games). Además, permite la creación de grupos privados, la comunicación de usuarios a través de chats y la gestión de permisos de usuario por parte de administradores. Trabajé tanto en el backend como en el frontend del equipo de desarrollo.
-[Ir al repositorio](https://github.com/IIC2143/2024-1-grupo-12)
+## Data Structures and Algorithms ##
 
-## Bases de Datos
-Este es un proyecto grupal en el que creamos una base de datos que modela las entregas, restaurantes y platos de una empresa de alimentos que gestiona varios clientes. También construimos un sitio web que demuestra algunas de las funcionalidades y consultas que soporta la base de datos.
-[Ir al repositorio](https://github.com/ilungenstrass/Proyecto-BD-52)
+### Task T0
+The main objectives were to:
+- Design simple algorithms in C.
+- Understand the differences between arrays and linked lists.
+- Familiarize myself with pointers and memory management.  
+[Go to repository](https://github.com/IIC2133-PUC/T0-2024-2-sebastianval22)
 
-## Programación Avanzada
-En este curso trabajé en varios proyectos programando en Python y utilizando librerias externas. 
+### Task T1
+The focus was on:
+- Applying heaps to solve priority-based problems.
+- Using linear sorting for efficient solutions.
+- Optimizing algorithms to meet specific complexity requirements.  
+[Go to repository](https://github.com/IIC2133-PUC/T1-2024-2-sebastianval22)
 
+### Task T2
+The objectives included:
+- Implementing and applying search trees for efficient problem-solving.
+- Using hashing techniques for efficient search and storage solutions.
+- Optimizing search and storage algorithms to meet specified time and space complexity constraints.  
+[Go to repository](https://github.com/IIC2133-PUC/T2-2024-2-sebastianval22)
 
-### Proyecto T0
-Esta entrega, específicamente, el archivo principal: `main.py` logra modelar el plan de defensa de un castillo que involucra tortugas y bombas con cierto alcance, a través del uso de funciones recursivas. El código se caracteriza por seguir las 5 reglas descritas en el enunciado de la tarea 0 para construir y validar las soluciones de los tableros.
+### Task T3
+The final task involved:
+- Exploring graph-based algorithms.
+- Employing algorithmic techniques to find optimal solutions.  
+[Go to repository](https://github.com/IIC2133-PUC/T3-2024-2-sebastianval22)
 
-Primero que todo, modela dos menús con el cual el usuario interactúa. El primer menú, menú de inicio, le pide al usuario el archivo de tablero a abrir, como también comprueba que este sea un archivo válido. Luego, el segundo menú expone cinco opciones de acciones que puede realizar el código con el archivo introducido, y le da de escoger al usuario.
+## Detailed Design of Software
+In this project, I coded and simulated a simplified version of the combat system from *Fire Emblem* in **C#**. The game involves strategic battles between units, each with unique abilities and characteristics, aiming to defeat the opposing team. The project focused on implementing clean code practices, utilizing various design patterns and strategies to ensure scalability and maintainability. The game also includes a graphical interface to enhance the user experience.  
+[Go to repository](https://github.com/sebastianval22/Proyecto_Fire-Emblem_DDS)
 
-Finalmente, de acuerdo a la elección escogida el programa realiza la acción con la ayuda de las diferentes funciones en módulos como `functions.py` y `tablero.py`.
-[Ir al código](https://github.com/sebastianval22/school-projects/tree/main/Advanced%20Programming%20Projects/T0)
+## Web Development
 
-### Proyecto T1
-El archivo principal, `main.py` simula un torneo de cavar, DCCavaCava, donde existen varias reglas y restricciones. Este torneo es simulado a través de menús, con los que el usuario puede interactuar. El torneo tiene 3 entidades principales imprescindibles para que este funcione, es por esto también que tienen una relación de composición con el Torneo en el Diagrama de Clases. Estas entidades son Arena, Excavador e Ítems. Para agregar estas entidades a Torneo, se trabajó con Objetos, realizando clases de Torneo, Arena, Ítem y Excavador. En estas, se agregaron las características y funciones principales que hace cada entidad (como son explicitadas en el enunciado), como también subclases necesarias, como fueron las del tipo de excavador y tipo de ítem. Finalmente, se agregaron todas las opciones que tiene el usuario a lo largo del juego, a la clase Torneo, y se llaman estos métodos cuando el usuario pida.
+### Tic-Tac-Goal: Football-Themed Tic Tac Toe
+This project is a modern twist on the classic "Tic Tac Toe" game, reimagined with a football theme. Players take turns selecting squares on a 3x3 grid, but instead of simply placing X or O, they must choose a football player whose attributes (e.g., nationality, club, position) match the row and column conditions of the selected square. The game connects to a football player API to validate selections, making it both fun and educational for football enthusiasts.
 
-Todo este programa y simulación del DCCavaCava, se realiza a partir de un folder llamado "Partidas". En este, se guardan los torneos, y es donde se pueden cargar estos torneos.
-[Ir al código](https://github.com/sebastianval22/school-projects/tree/main/Advanced%20Programming%20Projects/T1)
+**Frontend Development**  
+The frontend was built using **React**, **HTML**, and **CSS**, providing a responsive and interactive user interface. It integrates with the backend API to fetch and validate player data, enabling seamless gameplay. The application is deployed on **Netlify** for easy access.  
+[Frontend Repository](https://github.com/IIC2513/PichangasYa_frontend_24-2)
 
-### Proyecto T2
-El archivo principal, `main.py` simula un juego del tipo arcade, donde el personaje a manejar es Luigi, y el objetivo principal es llegar a la posición de la estrella final y agarrarla. Sin embargo, Luigi tiene una cierta cantidad de vidas, y tiempo, para lograr este objetivo. Este juego cuenta con otras entidades como fantasmas, diferenciados por su movimiento (vertical, horizontal y "follower"), que tienen como objetivo quitarle vidas a Luigi, pues cuando chocan con Luigi este pierde una vida. Adicionalmente, existen otros tipos de bloques, como la pared, que no se puede mover, el fuego, que también le puede quitar una vida a Luigi y la roca que solo puede ser movida por Luigi. Este programa cuenta con 4 ventanas de juego: `Ventana_Inicial`, `Ventana_Juego`, `Ventana_Juego_Timer`, y `Ventana_Final`.
+**Backend Development**  
+The backend, developed with **Koa.js** and **Sequelize**, manages all game logic and interactions with a **PostgreSQL** database. It includes features like data loaders, web scrapers for player data, and **WebSocket** integration for real-time multiplayer functionality. The API is deployed on **Render**, ensuring reliable performance.  
+[Backend Repository](https://github.com/IIC2513/PichangasYa_backend_24-2)
 
-Por otra parte, en cuanto al mapa de juego, este se crea en base a la información guardada en la carpeta "mapas", o en base a la creación del modo constructor donde el usuario puede colocar las entidades en el mapa, utilizando el método de "Drag and Drop".
+This project combines strategic gameplay with football trivia, offering a unique experience for players to enjoy while learning about their favorite sport.
 
-Finalmente, se le avisará al usuario si perdió, por qué perdió, sea por falta de tiempo o vidas, o si ganó, el puntaje final basado en lo explicitado en el enunciado.
-[Ir al código](https://github.com/sebastianval22/school-projects/tree/main/Advanced%20Programming%20Projects/T2)
+## Software Engineering
+This is a project that the entire class worked on throughout the duration of the course. It is a web platform designed to facilitate the organization and participation in soccer pickup games. Additionally, it allows the creation of private groups, user communication through chats, and user permission management by administrators. I worked on both the backend and frontend as part of the development team.  
+[Go to repository](https://github.com/IIC2143/2024-1-grupo-12)
 
-### Proyecto T3
-Los archivos principales son `cliente/main_cliente.py` y `servidor/main_servidor.py` los cuales simulan un juego de cachos, generando una interacción servidor-cliente (en el cual se pueden conectar varios clientes). En este, el objetivo principal es llegar al final de la partida con vidas restantes. Esto se logra a través de las opciones posibles por turno, incluyendo PASAR, ANUNCIAR TURNO, USAR PODER, TIRAR DADOS y DUDAR. El juego funciona en base a turnos, escogidos aleatoriamente, en el cual el número de jugadores es 4, y si no se logra llenar la sala se rellena con BOTS, que tienen una determinada forma de jugar. El juego cuenta con dos interfaces gráficas, una que corresponde a la SALA DE ESPERA en el cual se muestra los 4 jugadores, sus nombres e íconos, y si se une más que 4, le avisa al jugador 5 (y en adelante) que está llena la sala y debe esperar. En adición, si un jugador dentro de los 4 que van a jugar, se desconecta, se une uno de los que está en la lista de espera. Luego, si cualquier jugador (dentro de los que van a jugar) presiona el botón COMENZAR, empieza el juego, y se le muestra a todos los jugadores la interfaz gráfica del juego. Si el turno es del bot, comienza inmediatamente y sigue al siguiente jugador. Finalmente, si un jugador pierde (se le acaban las vidas), o se desconecta, se actualiza la interfaz gráfica y los turnos. Cuando solo queda un jugador se le avisa que ganó el juego, y que debe salir del programa, a los jugadores que perdieron se les avisa que deben salir del programa (como dice el enunciado).
-[Ir al código](https://github.com/sebastianval22/school-projects/tree/main/Advanced%20Programming%20Projects/T3)
+## Databases
+This is a group project where we created a database modeling deliveries, restaurants, and dishes for a food company managing multiple clients. We also built a website demonstrating some of the functionalities and queries supported by the database.  
+[Go to repository](https://github.com/ilungenstrass/Proyecto-BD-52)
+
+## Advanced Programming
+In this course, I worked on several projects using Python and external libraries.
+
+### Project T0
+This submission, specifically the main file: `main.py`, models the defense plan of a castle involving turtles and bombs with a certain range, using recursive functions. The code follows the five rules described in the task 0 instructions to construct and validate board solutions.
+
+First, it models two menus for user interaction. The first menu, the start menu, prompts the user to select a board file to open and verifies its validity. The second menu offers five action options that the code can perform with the provided file, allowing the user to choose.
+
+Finally, based on the user's choice, the program executes the corresponding action using various functions from modules like `functions.py` and `tablero.py`.  
+[Go to code](https://github.com/sebastianval22/school-projects/tree/main/Advanced%20Programming%20Projects/T0)
+
+### Project T1
+The main file, `main.py`, simulates a digging tournament, DCCavaCava, with specific rules and constraints. The tournament is simulated through menus that the user can interact with. The tournament has three main entities essential for its operation, which is why they have a composition relationship with the Tournament in the Class Diagram. These entities are Arena, Digger, and Items. To add these entities to the Tournament, we worked with Objects, creating classes for Tournament, Arena, Item, and Digger. These classes include the main characteristics and functions of each entity (as outlined in the instructions), as well as necessary subclasses, such as digger types and item types. Finally, all user options throughout the game were added to the Tournament class, and these methods are called when requested by the user.
+
+This entire program and simulation of DCCavaCava are based on a folder called "Partidas" (Matches). This folder stores the tournaments and is where tournaments can be loaded.  
+[Go to code](https://github.com/sebastianval22/school-projects/tree/main/Advanced%20Programming%20Projects/T1)
+
+### Project T2
+The main file, `main.py`, simulates an arcade-style game where the player controls Luigi, and the main objective is to reach the position of the final star and grab it. However, Luigi has a limited number of lives and time to achieve this goal. The game includes other entities like ghosts, differentiated by their movement (vertical, horizontal, and "follower"), whose goal is to take lives from Luigi when they collide with him. Additionally, there are other types of blocks, such as walls (immovable), fire (which can also take lives from Luigi), and rocks that can only be moved by Luigi. The program features four game windows: `Ventana_Inicial` (Start Window), `Ventana_Juego` (Game Window), `Ventana_Juego_Timer` (Game Timer Window), and `Ventana_Final` (End Window).
+
+The game map is created based on information stored in the "mapas" (maps) folder or through a constructor mode where the user can place entities on the map using the "Drag and Drop" method.
+
+Finally, the user is notified if they lose (due to running out of time or lives) or win, with the final score calculated based on the instructions.  
+[Go to code](https://github.com/sebastianval22/school-projects/tree/main/Advanced%20Programming%20Projects/T2)
+
+### Project T3
+The main files are `cliente/main_cliente.py` and `servidor/main_servidor.py`, which simulate a dice game (cachos) with a server-client interaction (allowing multiple clients to connect). The main objective is to finish the game with remaining lives. This is achieved through turn-based options, including PASS, ANNOUNCE TURN, USE POWER, ROLL DICE, and DOUBT. The game operates in turns, chosen randomly, with four players. If the room is not filled, it is populated with BOTS, which have a predetermined way of playing. The game features two graphical interfaces: one for the WAITING ROOM, showing the four players, their names, and icons, and notifying any additional players that the room is full and they must wait. Additionally, if a player among the four disconnects, a waiting player joins. If any player (among the four) presses the START button, the game begins, and all players are shown the game interface. If it is the bot's turn, it acts immediately and proceeds to the next player. Finally, if a player loses (runs out of lives) or disconnects, the interface and turns are updated. When only one player remains, they are notified of their victory and must exit the program, while losing players are told to exit the program (as per the instructions).  
+[Go to code](https://github.com/sebastianval22/school-projects/tree/main/Advanced%20Programming%20Projects/T3)

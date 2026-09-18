@@ -4,6 +4,11 @@ This repository indexes the coding projects I've worked on throughout my Compute
 # Index
 Projects are listed in reverse chronological order, most recent first. See each project's own README for full details.
 
+## Software Architecture (IIC2173)
+A group project building a real-time property auction marketplace with a microservices architecture: a Koa/Sequelize API, an independently-deployed JWT auth service with refresh-token rotation, an MQTT-driven real-time layer, WebPay Plus payments, and a serverless (AWS Lambda) PDF receipt generator — plus a React frontend consuming all of it live. Includes CI/CD pipelines, automated testing, and New Relic monitoring.
+- [Backend showcase](https://github.com/sebastianval22/arquisis-backend-showcase)
+- [Frontend showcase](https://github.com/sebastianval22/arquisis-frontend-showcase)
+
 ## Data Mining (IIC2433)
 A group project (four members) predicting a footballer's market value from performance, club, and demographic data, using a public ~30,000-player, 400,000-valuation Transfermarkt dataset. Compares a linear regression baseline against Random Forest and KNN models (with PCA and hyperparameter tuning), aiming to support scouting and transfer decisions by surfacing undervalued players.
 [Go to showcase](https://github.com/sebastianval22/el-algoritmo-del-gol)

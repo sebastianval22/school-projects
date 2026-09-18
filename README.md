@@ -4,6 +4,11 @@ This repository indexes the coding projects I've worked on throughout my Compute
 # Index
 Projects are listed in reverse chronological order, most recent first. See each project's own README for full details.
 
+## IT Project Management (IIC3113) — Planificador Académico UC
+A 7-person group project run under full PMBOK project management practices: an AI-assisted academic planner that extracts evaluation dates from uploaded course PDFs (via LLM), surfaces them on a calendar alongside class schedules, sends email reminders, and offers a conversational study-planning assistant. **My role was Risk Analyst** — I authored the project's risk register (identification, probability/impact scale, prioritization matrix), which correctly flagged the two risks that materialized during execution and were later resolved via formal change requests. The product itself was built by teammates in backend/frontend roles. At close, the project delivered 100% of its (re-scoped) approved scope with a CPI of 1.02 and an SPI of 1.11, six days ahead of schedule and under budget.
+- [Frontend showcase](https://github.com/sebastianval22/planificador-uc-frontend-showcase)
+- [Backend showcase](https://github.com/sebastianval22/planificador-uc-backend-showcase)
+
 ## Software Engineering (IIC2154) — GeriaPOP
 A capstone-style group project built in collaboration with healthcare professionals from Red de Salud UC CHRISTUS: an offline-first geriatric screening platform digitizing validated clinical tests (Mini-Cog for cognitive impairment, MNA for nutritional risk, CFS for frailty). The team split into backend, mobile, and frontend; **I focused on the mobile app** (React Native/Expo, WatermelonDB offline-first sync). The backend is included here as system context since the mobile client depends on it directly.
 - [Mobile showcase](https://github.com/sebastianval22/geriapop-mobile-showcase) — my primary contribution

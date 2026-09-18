@@ -42,8 +42,8 @@ Binary Search Trees and a KD-tree for attribute and 2D geometric range queries, 
 Kruskal's Minimum Spanning Tree with a Disjoint-Set (Union-Find), and a greedy algorithm for a wait-time minimization problem.
 [Go to showcase](https://github.com/sebastianval22/iic2133-t3-showcase)
 
-## Detailed Design of Software
-Coded and simulated a simplified version of the combat system from *Fire Emblem* in **C#**, focused on clean code practices and applying design patterns for scalability and maintainability, with a graphical interface for the full game experience.
+## Detailed Design of Software (IIC2113)
+A console-based simulation of *Fire Emblem Heroes*' turn-based tactical combat system in **C#**, focused on applying detailed object-oriented design (Strategy/Factory patterns) to a genuinely complex rules engine of composable unit skills, conditions, and damage effects. Since this course reuses the same project across semesters, the exact numeric formulas behind each skill have been redacted from the public repo — the design itself is intact.
 [Go to repository](https://github.com/sebastianval22/Proyecto_Fire-Emblem_DDS)
 
 ## Web Development — TicTacGoal

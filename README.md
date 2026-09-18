@@ -4,6 +4,11 @@ This repository indexes the coding projects I've worked on throughout my Compute
 # Index
 Projects are listed in reverse chronological order, most recent first. See each project's own README for full details.
 
+## Software Engineering (IIC2154) — GeriaPOP
+A capstone-style group project built in collaboration with healthcare professionals from Red de Salud UC CHRISTUS: an offline-first geriatric screening platform digitizing validated clinical tests (Mini-Cog for cognitive impairment, MNA for nutritional risk, CFS for frailty). The team split into backend, mobile, and frontend; **I focused on the mobile app** (React Native/Expo, WatermelonDB offline-first sync). The backend is included here as system context since the mobile client depends on it directly.
+- [Mobile showcase](https://github.com/sebastianval22/geriapop-mobile-showcase) — my primary contribution
+- [Backend showcase](https://github.com/sebastianval22/geriapop-backend-showcase)
+
 ## Software Architecture (IIC2173)
 A group project building a real-time property auction marketplace with a microservices architecture: a Koa/Sequelize API, an independently-deployed JWT auth service with refresh-token rotation, an MQTT-driven real-time layer, WebPay Plus payments, and a serverless (AWS Lambda) PDF receipt generator — plus a React frontend consuming all of it live. Includes CI/CD pipelines, automated testing, and New Relic monitoring.
 - [Backend showcase](https://github.com/sebastianval22/arquisis-backend-showcase)

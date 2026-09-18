@@ -4,6 +4,10 @@ This repository indexes the coding projects I've worked on throughout my Compute
 # Index
 Projects are listed in reverse chronological order, most recent first. See each project's own README for full details.
 
+## Data Mining (IIC2433)
+A group project (four members) predicting a footballer's market value from performance, club, and demographic data, using a public ~30,000-player, 400,000-valuation Transfermarkt dataset. Compares a linear regression baseline against Random Forest and KNN models (with PCA and hyperparameter tuning), aiming to support scouting and transfer decisions by surfacing undervalued players.
+[Go to showcase](https://github.com/sebastianval22/el-algoritmo-del-gol)
+
 ## Data Structures and Algorithms (IIC2133)
 Individual assignments from a data structures & algorithms course. Source repositories are private to the course; the links below are sanitized showcases with the graded algorithm implementations redacted (see each repo's README).
 

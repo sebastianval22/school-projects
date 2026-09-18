@@ -18,116 +18,13 @@ class Torneo:
         self.dias_totales = dias_totales
 
     def simular_dia(self):
-        if self.arena.tipo == "magnetica":
-            self.arena.humedad = random.randint(1, 10)
-            self.arena.dureza = random.randint(1, 10)
-        string = "Día " + str(self.dias_transcurridos)
-        print(string.center(60, " "))
-        print("-"*60)
-        print("Metros Cavados:")
-        contador_con = 0
-        contador_tes = 0
-        descansando = []
-        metros_dia = 0
-        for i in range(0, len(self.equipo)):
-            objeto_excavador = self.equipo[i]
-            if objeto_excavador.energia == 0:
-                objeto_excavador.descansar()
-                descansando.append(objeto_excavador.nombre)
-            else:
-                metros_cavados = float(objeto_excavador.cavar(self.arena))
-                nombre = objeto_excavador.nombre
-                print(nombre, "ha cavado", metros_cavados, "metros.")
-                metros_dia += metros_cavados
-        self.metros_cavados = round(self.metros_cavados + metros_dia, 2)
-        print("El equipo consiguió excavar", round(metros_dia, 2), "metros.")
-        print("\nItems Encontrados:")
-        for k in range(0, len(self.equipo)):
-            objeto_excavador = self.equipo[k]
-            if objeto_excavador.nombre not in descansando:
-                item = objeto_excavador.encontrar_item(self.arena)
-                nombre = objeto_excavador.nombre
-                if item is False:
-                    print(nombre, "no consiguió nada.")
-                elif item.tipo == "consumible":
-                    contador_con += 1
-                    self.mochila.append(item)
-                    print(nombre, "consiguió", item.nombre,
-                          "del tipo consumible.")
-                else:
-                    contador_tes += 1
-                    self.mochila.append(item)
-                    print(nombre, "consiguió", item.nombre, "del tipo tesoro.")
-        print("Se han encontrado", (contador_tes + contador_con), "ítems:")
-        print("-", contador_con, "consumibles.\n-", contador_tes, "tesoros.\n")
-        print()
-        evento = random.choices([True, False],
-                                weights=[p.PROB_INICIAR_EVENTO,
-                                         1 - p.PROB_INICIAR_EVENTO], k=1)[0]
-        if evento is False:
-            print("No ha ocurrido ningun evento...")
-        else:
-            tipo_evento = random.choices(self.eventos,
-                                         weights=[p.PROB_LLUVIA,
-                                                  p.PROB_TERREMOTO,
-                                                  p.PROB_DERRUMBE], k=1)[0]
-            if tipo_evento == "lluvia":
-                print("¡¡Durante el día de trabajo ocurrió una lluvia!!")
-                if self.arena.tipo == "normal":
-                    while True:  # Escoger Arena
-                        indice = random.randint(0, len(f.info_arenas) - 1)
-                        if f.info_arenas[indice][1] == "mojada":
-                            objeto_arena = f.instanciar_arena(f.info_arenas
-                                                              [indice])
-                            break
-                    self.arena = objeto_arena
-                if self.arena.tipo == "rocosa":
-                    while True:  # Escoger Arena
-                        indice = random.randint(0, len(f.info_arenas) - 1)
-                        if f.info_arenas[indice][1] == "magnetica":
-                            objeto_arena = f.instanciar_arena(f.info_arenas
-                                                              [indice])
-                            break
-                    self.arena = objeto_arena
-            elif tipo_evento == "terremoto":
-                print("¡¡Durante el día de trabajo ocurrió un terremoto!!")
-                if self.arena.tipo == "normal":
-                    while True:  # Escoger Arena
-                        indice = random.randint(0, len(f.info_arenas) - 1)
-                        if f.info_arenas[indice][1] == "rocosa":
-                            objeto_arena = f.instanciar_arena(f.info_arenas
-                                                              [indice])
-                            break
-                    self.arena = objeto_arena
-                if self.arena.tipo == "mojada":
-                    while True:  # Escoger Arena
-                        indice = random.randint(0, len(f.info_arenas) - 1)
-                        if f.info_arenas[indice][1] == "magnetica":
-                            objeto_arena = f.instanciar_arena(f.info_arenas
-                                                              [indice])
-                            break
-                    self.arena = objeto_arena
-            else:
-                print("¡¡Durante el día de trabajo ocurrió un derrumbe!!")
-                while True:  # Escoger Arena
-                    indice = random.randint(0, len(f.info_arenas) - 1)
-                    if f.info_arenas[indice][1] == "normal":
-                        objeto_arena = f.instanciar_arena(f.info_arenas
-                                                          [indice])
-                        break
-                self.arena = objeto_arena
-                restar = p.METROS_PERDIDOS_DERRUMBE
-                self.metros_cavados = self.metros_cavados - restar
-            for o in range(0, len(self.equipo)):
-                excavador = self.equipo[o]
-                excavador.felicidad -= p.FELICIDAD_PERDIDA
-            print("La arena final es del tipo", self.arena.tipo)
-            print("Tu equipo ha perdido", p.FELICIDAD_PERDIDA, "de felicidad")
-        print()
-        self.metros_cavados = round(self.metros_cavados, 2)
-        print("Metros totales cavados:", (self.metros_cavados))
-        for j in range(0, len(descansando)):
-            print(descansando[j], "está descansando...")
+        # Simulates one tournament day: reshuffles a "magnetica" arena's
+        # stats, has each rested digger dig (or rest if out of energy) and
+        # roll for a found item, then rolls whether a random event
+        # (rain/earthquake/collapse) fires, resolving its arena-type
+        # transition and team happiness penalty accordingly. Solution logic
+        # redacted for showcase repo.
+        pass
 
     def mostrar_estado(self):
         print("\n*** Estado Torneo ***".center(60, " "))

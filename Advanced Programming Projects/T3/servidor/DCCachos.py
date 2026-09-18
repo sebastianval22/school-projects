@@ -34,99 +34,11 @@ class DCCachos:
         return self.jugadores_vidas
 
     def turno_bot(self, nombre):
-        self.turno_num_recursivo = (self.lista_jugadores_actuales.index(
-            nombre)) + 1
-        if self.turno_num_recursivo >= len(self.lista_jugadores_actuales):
-            self.turno_num_recursivo = 0
-            self.nombre_actual_turno = self.lista_jugadores_actuales[
-                self.turno_num_recursivo]
-        else:
-            self.nombre_actual_turno = self.lista_jugadores_actuales[
-                self.turno_num_recursivo]
-        if self.num_turno == 0:  # ACA NO PUEDO DUDAR
-            e = self.tirar_dados(nombre)
-            prob_anunciar = random.choices(["ANUNCIAR", "NO_ANUNCIAR"],
-                                           weights=[self.data[
-                                                   "PROB_ANUNCIAR"],
-                                                 1-self.data["PROB_ANUNCIAR"]],
-                                           k=1)[0]
-            if prob_anunciar == "ANUNCIAR":
-                if self.num_mayor_enunciado < 12:
-                    numero_anunciado = random.randint(
-                        self.num_mayor_enunciado + 1, 12)
-                else:
-                    numero_anunciado = 0
-                if numero_anunciado > self.num_mayor_enunciado:
-                    if numero_anunciado == 12:
-                        self.valor_anterior = numero_anunciado
-                        self.turno_anterior = nombre
-                        self.valor_anterior = self.data["VALOR_PASO"]
-                        self.paso_anterior = True
-                        return "PASAR"
-                    else:
-                        self.num_mayor_enunciado = numero_anunciado
-                        self.valor_anterior = numero_anunciado
-                        self.turno_anterior = nombre
-                        self.paso_anterior = False
-                        return "ANUNCIAR"
-                else:
-                    self.turno_anterior = nombre
-                    self.valor_anterior = self.data["VALOR_PASO"]
-                    self.paso_anterior = True
-                    return "PASAR"
-            else:
-                self.turno_anterior = nombre
-                self.valor_anterior = self.data["VALOR_PASO"]
-                self.paso_anterior = True
-                return "PASAR"
-        else:
-            prob_dudar = random.choices(["DUDAR", "NO_DUDAR"],
-                                        weights=[self.data["PROB_DUDAR"],
-                                                 1-self.data["PROB_DUDAR"]],
-                                        k=1)[0]
-            if prob_dudar == "DUDAR":
-                self.nombre_actual_turno = nombre
-                return "DUDAR"
-
-            else:
-                e = self.tirar_dados(nombre)
-                e
-                prob_anunciar = random.choices(["ANUNCIAR", "NO_ANUNCIAR"],
-                                               weights=[self.data[
-                                                   "PROB_ANUNCIAR"],
-                                                 1-self.data["PROB_ANUNCIAR"]],
-                                               k=1)[0]
-                if prob_anunciar == "ANUNCIAR":
-                    numero_anunciado = random.randint(
-                        self.valor_anterior + 1, 12)
-                    if self.num_mayor_enunciado < 12:
-                        numero_anunciado = random.randint(
-                            self.num_mayor_enunciado + 1, 12)
-                    else:
-                        numero_anunciado = 0
-                    if numero_anunciado > self.num_mayor_enunciado:
-                        if numero_anunciado == 12:
-                            self.valor_anterior = numero_anunciado
-                            self.turno_anterior = nombre
-                            self.valor_anterior = self.data["VALOR_PASO"]
-                            self.paso_anterior = True
-                            return "PASAR"
-                        else:
-                            self.num_mayor_enunciado = numero_anunciado
-                            self.valor_anterior = numero_anunciado
-                            self.turno_anterior = nombre
-                            self.paso_anterior = False
-                            return "ANUNCIAR"
-                    else:
-                        self.turno_anterior = nombre
-                        self.valor_anterior = self.data["VALOR_PASO"]
-                        self.paso_anterior = True
-                        return "PASAR"
-                else:
-                    self.turno_anterior = nombre
-                    self.valor_anterior = self.data["VALOR_PASO"]
-                    self.paso_anterior = True
-                    return "PASAR"
+        # Bot AI turn decision: advances the turn pointer, then (weighted by
+        # PROB_DUDAR/PROB_ANUNCIAR from config) decides to doubt, announce a
+        # higher value, or pass, rolling dice and updating turn-state fields
+        # as needed. Returns one of "DUDAR"/"ANUNCIAR"/"PASAR".
+        pass
 
     def pasar(self, nombre):
         self.turno_num_recursivo = (self.lista_jugadores_actuales.index(
@@ -143,21 +55,10 @@ class DCCachos:
         self.paso_anterior = True
 
     def revisar_duda(self, lista):
-        paso = lista[2]
-        valor_a_comparar = lista[1]
-        nombre_a_dudar = lista[0][0]
-        valor_dados = lista[0][1]
-        suma_dados = valor_dados[0] + valor_dados[1]
-        if paso is True:
-            if valor_a_comparar != suma_dados:
-                return (True, nombre_a_dudar)
-            else:
-                return (False, nombre_a_dudar)
-        else:
-            if valor_a_comparar > suma_dados:
-                return (True, nombre_a_dudar)
-            else:
-                return (False, nombre_a_dudar)
+        # Resolves a "doubt" challenge against the previous player's
+        # announced value and actual dice roll, per the doubt/pass rules.
+        # Returns (was_the_doubted_player_wrong, name_of_doubted_player).
+        pass
 
     def perder_vida(self, nombre):
         vida_anterior = self.jugadores_vidas[nombre]
@@ -209,33 +110,19 @@ class DCCachos:
         self.paso_anterior = False
 
     def revisar_poder(self, nombre):
-        valor_dados = self.jugadores_dados[nombre]
-        if (valor_dados[0] == 1 and valor_dados[1] == 2) or (
-             valor_dados[0] == 2 and valor_dados[1] == 1):
-            return (True, "Ataque")
-        elif (valor_dados[0] == 3 and valor_dados[1] == 1) or (
-             valor_dados[0] == 1 and valor_dados[1] == 3):
-            return (True, "Terremoto")
-        else:
-            return False
+        # Checks the player's current dice roll against the fixed
+        # combinations that unlock a power ("Ataque" / "Terremoto").
+        pass
 
     def terremoto(self, afectado):
-        nueva_vida = random.randint(1, self.data["NUMERO_VIDAS"])
-        self.jugadores_vidas[afectado] = nueva_vida
-        return nueva_vida
+        # "Earthquake" power effect: resets the affected player's lives to
+        # a random value within the configured range.
+        pass
 
     def revisar_anunciar(self, valor):
-        valor = f"{valor}"
-        if valor.isdigit() is True:
-            valor = int(valor)
-            if (12 < valor) or (1 >= valor):
-                return "Valor inválido"
-            elif self.num_mayor_enunciado >= valor:
-                return f"Tiene que ser >{self.num_mayor_enunciado}"
-            else:
-                return True
-        else:
-            return "Tiene que ser numero"
+        # Validates a player's announced value against the numeric range
+        # and the "must exceed the current highest announcement" rule.
+        pass
 
 
 class Bots:

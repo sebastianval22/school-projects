@@ -89,132 +89,17 @@ class Juego(QObject):
         self.tiempo.start(self.tiempo_movimiento_fantasmas)
 
     def fantasmas_verticales(self) -> None:
-        eliminar = []
-        p = 0
-        for i in range(len(self.fantasmas_v)):
-            fantasma = self.fantasmas_v[i]
-            id = i - p
-            posicion_1 = fantasma.posicion
-            if fantasma.arriba is False:
-                posible_posicion = f.entrega_nueva_posicion(posicion_1, "S")
-                lista = list(self.diccionario_labels.keys())
-                if posible_posicion in lista:
-                    entidad = self.diccionario_labels[posible_posicion]
-                    if ((entidad == "-") or (entidad == "H") or (
-                         entidad == "V") or (entidad == "Z")):
-                        self.senal_mover.emit(posicion_1, posible_posicion,
-                                              "V", id, "S")
-                        fantasma.posicion = posible_posicion
-                    elif entidad == "F":
-                        self.senal_eliminar_entidad.emit("V", id)
-                        eliminar.append(fantasma)
-                        p += 1
-                    elif entidad == "L":
-                        self.luigi.posicion_luigi = self.posicion_luigi_inicial
-                        self.senal_mover.emit(posible_posicion,
-                                              self.posicion_luigi_inicial, "L",
-                                              0, "D")
-                        self.senal_mover.emit(posicion_1, posible_posicion,
-                                              "V", id, "S")
-                        fantasma.posicion = posible_posicion
-                        self.choque_fantasma()
-                    elif ((entidad == "R") or (entidad == "P")):
-                        fantasma.arriba = True
-                else:
-                    fantasma.arriba = True
-            else:
-                posible_posicion = f.entrega_nueva_posicion(posicion_1, "W")
-                lista = list(self.diccionario_labels.keys())
-                if posible_posicion in lista:
-                    entidad = self.diccionario_labels[posible_posicion]
-                    if ((entidad == "-") or (entidad == "H") or (
-                         entidad == "V") or (entidad == "Z")):
-                        self.senal_mover.emit(posicion_1, posible_posicion,
-                                              "V", id, "W")
-                        fantasma.posicion = posible_posicion
-                    elif entidad == "F":
-                        self.senal_eliminar_entidad.emit("V", id)
-                        eliminar.append(fantasma)
-                        p += 1
-                    elif entidad == "L":
-                        self.luigi.posicion_luigi = self.posicion_luigi_inicial
-                        self.senal_mover.emit(posible_posicion,
-                                              self.posicion_luigi_inicial, "L",
-                                              0, "D")
-                        self.senal_mover.emit(posicion_1, posible_posicion,
-                                              "V", id, "W")
-                        fantasma.posicion = posible_posicion
-                        self.choque_fantasma()
-                    elif ((entidad == "R") or (entidad == "P")):
-                        fantasma.arriba = False
-                else:
-                    fantasma.arriba = False
-        for elemento in eliminar:
-            self.fantasmas_v.remove(elemento)
+        # Per-tick vertical ghost movement: advances each Ghost_V one cell
+        # along its current direction, bouncing off walls/rocks, despawning
+        # on fire, and triggering choque_fantasma() on colliding with Luigi.
+        # -- game-rule logic redacted for showcase repo --
+        pass
 
     def fantasmas_horizontales(self) -> None:
-        eliminar = []
-        p = 0
-        for i in range(len(self.fantasmas_h)):
-            fantasma = self.fantasmas_h[i]
-            id = i - p
-            posicion_1 = fantasma.posicion
-            if fantasma.derecha is False:
-                posible_posicion = f.entrega_nueva_posicion(posicion_1, "A")
-                lista = list(self.diccionario_labels.keys())
-                if posible_posicion in lista:
-                    entidad = self.diccionario_labels[posible_posicion]
-                    if ((entidad == "-") or (entidad == "H") or (
-                         entidad == "V") or (entidad == "Z")):
-                        self.senal_mover.emit(posicion_1, posible_posicion,
-                                              "H", id, "A")
-                        fantasma.posicion = posible_posicion
-                    elif entidad == "F":
-                        self.senal_eliminar_entidad.emit("H", id)
-                        eliminar.append(fantasma)
-                        p += 1
-                    elif entidad == "L":
-                        self.luigi.posicion_luigi = self.posicion_luigi_inicial
-                        self.senal_mover.emit(posible_posicion,
-                                              self.posicion_luigi_inicial, "L",
-                                              0, "D")
-                        self.senal_mover.emit(posicion_1, posible_posicion,
-                                              "H", id, "A")
-                        fantasma.posicion = posible_posicion
-                        self.choque_fantasma()
-                    elif ((entidad == "R") or (entidad == "P")):
-                        fantasma.derecha = True
-                else:
-                    fantasma.derecha = True
-            else:
-                posible_posicion = f.entrega_nueva_posicion(posicion_1, "D")
-                lista = list(self.diccionario_labels.keys())
-                if posible_posicion in lista:
-                    entidad = self.diccionario_labels[posible_posicion]
-                    if ((entidad == "-") or (entidad == "H") or (
-                         entidad == "V") or (entidad == "Z")):
-                        self.senal_mover.emit(posicion_1, posible_posicion,
-                                              "H", id, "D")
-                        fantasma.posicion = posible_posicion
-                    elif entidad == "F":
-                        self.senal_eliminar_entidad.emit("H", id)
-                        eliminar.append(fantasma)
-                        p += 1
-                    elif entidad == "L":
-                        self.luigi.posicion_luigi = self.posicion_luigi_inicial
-                        self.senal_mover.emit(posible_posicion,
-                                              self.posicion_luigi_inicial, "L",
-                                              0, "D")
-                        self.senal_mover.emit(posicion_1, posible_posicion,
-                                              "H", id, "D")
-                        fantasma.posicion = posible_posicion
-                        self.choque_fantasma()
-                    elif ((entidad == "R") or (entidad == "P")):
-                        fantasma.derecha = False
-                else:
-                    fantasma.derecha = False
-        for elemento in eliminar:
-            self.fantasmas_h.remove(elemento)
+        # Per-tick horizontal ghost movement: same rules as
+        # fantasmas_verticales, mirrored onto the horizontal axis.
+        # -- game-rule logic redacted for showcase repo --
+        pass
 
     def cheat_1(self):
         eliminar = []
@@ -252,125 +137,39 @@ class Juego(QObject):
         self.diccionario_labels = diccionario
 
     def mover_a_luigi(self, direccion: str) -> None:
-        posicion_a = self.luigi.posicion_luigi
-        posible_posicion = f.entrega_nueva_posicion(posicion_a, direccion)
-        lista = list(self.diccionario_labels.keys())
-        if posible_posicion in lista:
-            entidad = self.diccionario_labels[posible_posicion]
-            if entidad == "-":
-                self.senal_mover.emit(posicion_a, posible_posicion,
-                                      "L", 0, direccion)
-                self.luigi.posicion_luigi = posible_posicion
-            elif ((entidad == "V") or (entidad == "H") or (entidad == "Z")):
-                self.luigi.posicion_luigi = self.posicion_luigi_inicial
-                self.senal_mover.emit(posicion_a, self.posicion_luigi_inicial,
-                                      "L", 0, "D")
-                self.choque_fantasma()
-            elif entidad == "R":
-                self.verificar_choque_roca(posicion_a,
-                                           posible_posicion, direccion)
-            elif (self.diccionario_labels[posible_posicion]) == "F":
-                self.luigi.posicion_luigi = self.posicion_luigi_inicial
-                self.senal_mover.emit(posicion_a, self.posicion_luigi_inicial,
-                                      "L", 0, "D")
-                self.choque_fantasma()
+        # Resolves Luigi's move attempt: open square -> move, ghost/fire ->
+        # lose a life via choque_fantasma(), rock -> delegate to
+        # verificar_choque_roca() for pushing.
+        # -- game-rule logic redacted for showcase repo --
+        pass
 
     def choque_fantasma(self):
-        if self.luigi.vidas <= 0:
-            self.senal_termino_juego.emit(False)
-            self.pausa(True)
-        else:
-            self.senal_perdida_vida.emit()
-            self.luigi.vidas -= 1
-            for i in range(0, len(self.fantasmas_h)):
-                fantasma = self.fantasmas_h[i]
-                self.senal_mover.emit(fantasma.posicion,
-                                      fantasma.posicion_inicial, "H",
-                                      i, "D")
-                fantasma.derecha = True
-                fantasma.posicion = fantasma.posicion_inicial
-            for i in range(0, len(self.fantasmas_v)):
-                fantasma = self.fantasmas_v[i]
-                self.senal_mover.emit(fantasma.posicion,
-                                      fantasma.posicion_inicial, "V",
-                                      i, "W")
-                fantasma.posicion = fantasma.posicion_inicial
-                fantasma.arriba = True
-            for i in range(0, len(self.fantasmas_z)):
-                fantasma = self.fantasmas_z[i]
-                self.senal_mover.emit(fantasma.posicion,
-                                      fantasma.posicion_inicial, "Z",
-                                      i, "D")
-                fantasma.posicion = fantasma.posicion_inicial
-                fantasma.arriba = True
-            for roca in self.rocas:
-                self.senal_mover.emit(roca.posicion,
-                                      roca.posicion_inicial, "R",
-                                      roca.id, "W")
-                roca.posicion = roca.posicion_inicial
+        # Life-loss consequence: ends the game if out of lives, otherwise
+        # decrements a life and resets every ghost and rock to its starting
+        # position.
+        # -- game-rule logic redacted for showcase repo --
+        pass
 
     def cheat_2(self):
         self.luigi.vidas = p.CANTIDAD_VIDAS
 
     def revisar_si_gano(self):
-        if self.posicion_estrella == self.luigi.posicion_luigi:
-            self.senal_termino_juego.emit(True)
-            self.pausa = True
+        # Win condition: Luigi's position matches the star's position.
+        # -- game-rule logic redacted for showcase repo --
+        pass
 
     def verificar_choque_roca(self, posicion_antigua, posicion_roca,
                               direccion):
-        for roca in self.rocas:
-            if roca.posicion == posicion_roca:
-                roca_mover = roca
-        nueva_posicion_roca = f.entrega_nueva_posicion(posicion_roca,
-                                                       direccion)
-        lista = list(self.diccionario_labels.keys())
-        if nueva_posicion_roca in lista:
-            if (self.diccionario_labels[nueva_posicion_roca] == "-") and (
-                 nueva_posicion_roca != self.posicion_estrella):
-                self.senal_mover.emit(posicion_roca, nueva_posicion_roca,
-                                      "R", roca_mover.id, "D")
-                self.senal_mover.emit(posicion_antigua, posicion_roca, "L",
-                                      0, direccion)
-                self.luigi.posicion_luigi = posicion_roca
-                roca_mover.posicion = nueva_posicion_roca
+        # Rock-pushing rule: a rock only slides forward (and Luigi follows
+        # into its old cell) if the cell beyond it is empty and isn't the
+        # star's position.
+        # -- game-rule logic redacted for showcase repo --
+        pass
 
     def fantasmas_follower(self):
-        eliminar = []
-        p = 0
-        for i in range(len(self.fantasmas_z)):
-            fantasma = self.fantasmas_z[i]
-            id = i - p
-            posicion_1 = fantasma.posicion
-            prioridades = f.calcular_prioridad(posicion_1,
-                                               self.luigi.posicion_luigi)
-            for direccion in prioridades:
-                posible_posicion = f.entrega_nueva_posicion(posicion_1,
-                                                            direccion)
-                lista = list(self.diccionario_labels.keys())
-                if (posible_posicion in lista):
-                    entidad = self.diccionario_labels[posible_posicion]
-                    if ((entidad == "-") or (entidad == "H") or (
-                         entidad == "V") or (entidad == "Z")):
-                        self.senal_mover.emit(posicion_1, posible_posicion,
-                                              "Z", id, direccion)
-                        fantasma.posicion = posible_posicion
-                        break
-                    elif entidad == "F":
-                        self.senal_eliminar_entidad.emit("Z", id)
-                        eliminar.append(fantasma)
-                        p += 1
-                        break
-                    elif entidad == "L":
-                        self.luigi.posicion_luigi = self.posicion_luigi_inicial
-                        self.senal_mover.emit(posible_posicion,
-                                              self.posicion_luigi_inicial, "L",
-                                              0, "D")
-                        self.senal_mover.emit(posicion_1,
-                                              posible_posicion, "Z",
-                                              id, direccion)
-                        fantasma.posicion = posible_posicion
-                        self.choque_fantasma()
-                        break
-        for elemento in eliminar:
-            self.fantasmas_z.remove(elemento)
+        # Follower-ghost AI: each tick, ranks the 4 directions by how much
+        # closer they'd bring the ghost to Luigi (via calcular_prioridad)
+        # and takes the first viable one, handling collisions the same way
+        # as the other ghost types.
+        # -- game-rule logic redacted for showcase repo --
+        pass

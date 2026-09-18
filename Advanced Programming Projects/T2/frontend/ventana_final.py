@@ -44,8 +44,9 @@ class Ventana_Final(QWidget):
             color = QColor(0, 255, 0)
             self.background.setStyleSheet(
                 "background-color: {}".format(color.name()))
-            puntaje = int((seg_final*p.MULTIPLICADOR_PUNTAJE)/(
-                p.CANTIDAD_VIDAS + 1 - int(vidas_finales)))
+            # Score formula redacted for showcase repo (rewards remaining
+            # lives and time left).
+            puntaje = 0
             font = QFont()
             font.setFamily("Arial")
             font.setPointSize(24)

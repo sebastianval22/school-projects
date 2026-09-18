@@ -7,6 +7,10 @@ Projects are listed in reverse chronological order, most recent first. See each 
 ## Data Structures and Algorithms (IIC2133)
 Individual assignments from a data structures & algorithms course. Source repositories are private to the course; the links below are sanitized showcases with the graded algorithm implementations redacted (see each repo's README).
 
+### Assignment 0 — Arrays, Pointers & Memory Management
+A pet-store inventory simulation in C, focused on designing array-based data structures and managing dynamic memory (`malloc`/`realloc`/`free`) correctly by hand.
+[Go to showcase](https://github.com/sebastianval22/iic2133-t0-showcase)
+
 ### Assignment 1 — Min-Max Heaps & Linear Sorting
 Priority-queue-style event simulation using a Min-Max Heap for O(1) median/min/max access, plus a two-key stable sort built from Counting Sort.
 [Go to showcase](https://github.com/sebastianval22/iic2133-t1-showcase)

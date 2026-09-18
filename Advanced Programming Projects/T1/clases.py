@@ -68,23 +68,10 @@ class Arena:
             self.__estatica = value
 
     def dificultad_arena(self) -> float:
-        if self.tipo == "normal":
-            dificultad = round(p.POND_ARENA_NORMAL*(round((self.rareza +
-                                                           self.humedad +
-                                                           self.dureza
-                                                           + self.estatica) /
-                                                          40, 2)), 2)
-            return dificultad
-        elif (self.tipo == "rocosa") or (self.tipo == "magnetica"):
-            dificultad = round((self.rareza + self.humedad + self.dureza*2
-                                                           + self.estatica) /
-                               50, 2)
-            return dificultad
-        else:
-            dificultad = round((self.rareza + self.humedad + self.dureza
-                                                           + self.estatica) /
-                               40, 2)
-            return dificultad
+        # Computes a difficulty score from rareza/humedad/dureza/estatica,
+        # weighted differently per arena tipo. Solution logic redacted for
+        # showcase repo.
+        pass
 
 
 class Item (ABC):
@@ -191,49 +178,17 @@ class Excavador(ABC):
         pass
 
     def descansar(self):
-        dias_descanso = int(self.edad/20)
-        self.dias_descansando += 1
-        if self.dias_descansando == dias_descanso:
-            self.energia = 100
-            self.dias_descansando = 0
+        # Rest duration scales with age; once the required rest days have
+        # elapsed, energy is restored to full. Solution logic redacted for
+        # showcase repo.
+        pass
 
     def encontrar_item(self, arena: Arena):
-        probabilidad_item = (p.PROB_ENCONTRAR_ITEM)*(self.suerte/10)
-        encontro_item = random.choices([True, False],
-                                       weights=[probabilidad_item,
-                                                1 - probabilidad_item], k=1)[0]
-        if (arena.tipo == "mojada") or (arena.tipo == "magnetica"):
-            tipo_item = random.choices(["tesoro", "consumibles"],
-                                       weights=[0.5, 0.5], k=1)[0]
-            if tipo_item == "tesoro":
-                limite_s = len(f.info_tesoros) - 1
-                tesoro = f.info_tesoros[random.randint(0, limite_s)]
-                objeto_tesoro = f.instanciar_tesoro(tesoro)
-                return objeto_tesoro
-            else:
-                limite_s = len(f.info_consumibles) - 1
-                consumible = f.info_consumibles[random.randint(0, limite_s)]
-                objeto_consumible = f.instanciar_consumible(consumible)
-                return objeto_consumible
-        else:
-            if encontro_item is True:
-                prob_consumible = p.PROB_ENCONTRAR_CONSUMIBLE
-                tipo_item = random.choices(["tesoro", "consumible"],
-                                           weights=[p.PROB_ENCONTRAR_TESORO,
-                                                    prob_consumible],
-                                           k=1)[0]
-                if tipo_item == "tesoro":
-                    limite_s = len(f.info_tesoros) - 1
-                    tesoro = f.info_tesoros[random.randint(0, limite_s)]
-                    objeto_tesoro = f.instanciar_tesoro(tesoro)
-                    return objeto_tesoro
-                else:
-                    limite = len(f.info_consumibles) - 1
-                    consumible = f.info_consumibles[random.randint(0, limite)]
-                    objeto_consumible = f.instanciar_consumible(consumible)
-                    return objeto_consumible
-            else:
-                return False
+        # Rolls for whether an item is found (probability scaled by luck),
+        # then picks treasure vs. consumable (odds vary by arena type) and
+        # instantiates a random item of that kind. Solution logic redacted
+        # for showcase repo.
+        pass
 
     @abstractmethod
     def gastar_energia(self):
@@ -251,23 +206,20 @@ class ExcavadorTareo(Excavador):
         self.tipo = "tareo"
 
     def cavar(self, arena: Arena):
-        metros_cavados = round(((30/self.edad)+(
-            (self.felicidad+(2*self.fuerza))/10))*(
-            1/(10*arena.dificultad_arena())), 2)
-        self.gastar_energia()
-        return metros_cavados
+        # Digging-yield formula for this digger type (age/happiness/strength
+        # vs. arena difficulty), then spends energy. Solution logic redacted
+        # for showcase repo.
+        pass
 
     def gastar_energia(self):
-        energia_gastada = int((10/self.fuerza)+(self.edad/6))
-        self.energia = self.energia - energia_gastada
+        # Per-dig energy cost formula for this digger type. Solution logic
+        # redacted for showcase repo.
+        pass
 
     def consumir(self, item: Consumible):
-        self.energia = self.energia + item.energia + p.ENERGIA_ADICIONAL_TAREO
-        self.fuerza = self.fuerza + item.fuerza
-        self.suerte = self.suerte + item.suerte + p.SUERTE_ADICIONAL_TAREO
-        self.felicidad = (self.felicidad + item.felicidad
-                          - p.FELICIDAD_PERDIDA_TAREO)
-        self.edad = self.edad + p.EDAD_ADICIONAL_TAREO
+        # Applies a consumable's stat effects, type-specific tuning.
+        # Solution logic redacted for showcase repo.
+        pass
 
 
 class ExcavadorDocencio(Excavador):
@@ -276,24 +228,20 @@ class ExcavadorDocencio(Excavador):
         self.tipo = "docencio"
 
     def cavar(self, arena: Arena):
-        metros_cavados = round(((30/self.edad)+(
-            (self.felicidad+(2*self.fuerza))/10))*(
-            1/(10*arena.dificultad_arena())), 2)
-        self.felicidad = self.felicidad + p.FELICIDAD_ADICIONAL_DOCENCIA
-        self.fuerza = self.fuerza + p.FUERZA_ADICIONAL_DOCENCIA
-        self.gastar_energia()
-        return metros_cavados
+        # Digging-yield formula for this digger type, plus its own
+        # happiness/strength side-effects. Solution logic redacted for
+        # showcase repo.
+        pass
 
     def gastar_energia(self):
-        energia_gastada = int((10/self.fuerza)+(self.edad/6) +
-                              p.ENERGIA_PERDIDA_DOCENCIA)
-        self.energia = self.energia - energia_gastada
+        # Per-dig energy cost formula for this digger type. Solution logic
+        # redacted for showcase repo.
+        pass
 
     def consumir(self, item: Consumible):
-        self.energia = self.energia + item.energia
-        self.fuerza = self.fuerza + item.fuerza
-        self.suerte = self.suerte + item.suerte
-        self.felicidad = self.felicidad + item.felicidad
+        # Applies a consumable's stat effects, type-specific tuning.
+        # Solution logic redacted for showcase repo.
+        pass
 
 
 class ExcavadorHibrido(ExcavadorDocencio, ExcavadorTareo):
@@ -307,18 +255,12 @@ class ExcavadorHibrido(ExcavadorDocencio, ExcavadorTareo):
         return metros_cavados
 
     def gastar_energia(self):
-        energia_gastada = int(((10/self.fuerza)+(self.edad/6) +
-                              p.ENERGIA_PERDIDA_DOCENCIA)/2)
-        self.energia = self.energia - energia_gastada
-        if self.energia < 20:
-            self.energia = 20
+        # Blended energy-cost formula (averaging the two parent types),
+        # with a minimum floor. Solution logic redacted for showcase repo.
+        pass
 
     def consumir(self, item: Consumible):
-        self.energia = self.energia + item.energia + p.ENERGIA_ADICIONAL_TAREO
-        if self.energia < 20:
-            self.energia = 20
-        self.fuerza = self.fuerza + item.fuerza
-        self.suerte = self.suerte + item.suerte + p.SUERTE_ADICIONAL_TAREO
-        self.felicidad = (self.felicidad + item.felicidad
-                          - p.FELICIDAD_PERDIDA_TAREO)
-        self.edad = self.edad + p.EDAD_ADICIONAL_TAREO
+        # Applies a consumable's stat effects, blending both parent types'
+        # tuning with a minimum energy floor. Solution logic redacted for
+        # showcase repo.
+        pass
